@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Health Advisor</title>
+    <style>
+        body {
+            margin: 0;
+            background-image: url(PETO1.jpeg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            background-color: #007bff;
+            color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+        }
+        .view-vaccination-btn {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            text-decoration: none;
+            text-align: center;
+            margin-left: auto;
+        }
+
+
+        .view-vaccination-btn:hover {
+            background-color: #218838;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        } 
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .emblem img {
+
+            width: 90px;
+            height: 60px;
+            margin-top: 7px;
+        }
+        
+        #heading {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-left: 10px;
+            margin-top: 10%;
+        }
+        
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 70px);
+            text-align: center;
+        }
+        
+        /* Search bar container styling */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 50px;
+    padding-bottom: 10%;
+}
+
+/* Search input styling */
+#searchBar {
+    width: 300px;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 2px solid #4CAF50;
+    border-radius: 25px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#searchBar:focus {
+    border-color: #45a049;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Search button styling */
+.search-container button {
+    padding: 10px 20px;
+    background-color: #5f1b4e;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.search-container button:hover {
+    background-color: #45a049;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.search-container button:active {
+    background-color: #3e8e41;
+}
+
+        
+        .search-box {
+            width: 500px;
+            padding: 12px 20px;
+            font-size: 18px;
+            border: 1px solid #e1d9d9;
+            border-radius: 30px;
+            outline: none;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .search-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 20px;
+            background-color: #4285F4;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .search-btn:hover {
+            background-color: #357ae8;
+        }
+
+        /* Dropdown button styling */
+        .dropdown-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropbtn {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 90px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 500px;
+            height: 60px;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            width: 100%;
+        }
+        
+        .dropdown-content a {
+            color: #333;
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #55ea34;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown:hover .dropbtn {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <div class="logo-container">
+            <div class="emblem">
+                <img src="logo4.png" alt="Logo">
+            </div>
+            <div class="head">
+                <h1 class="heading">PET HEALTH ADVISOR</h1>
+            </div>
+        </div>
+        <div style="margin-left: auto;">
+       <a href="vaccination.html"><button class="view-vaccination-btn">View Vaccination Schedule</button></a></div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="content">
+        <!-- Search Bar -->
+        <div class="search-container">
+          <input type="text" id="searchBar" placeholder="Search symptoms...(ex: fever in dog)" />
+          <button id="search">Search</button>
+        </div>
+        
+
+        <!-- Dropdown Menus -->
+        <div class="dropdown-container">
+            <!-- Common Pets -->
+            <div class="dropdown">
+             <button class="dropbtn">Common Pets &#x25BE;</button>
+                <div class="dropdown-content">
+                    <a href="dog.html">Dog</a>
+                    <a href="cat.html">Cat</a>
+                    <a href="rabbit.html">Rabbit</a>
+                    <a href="bird.html">Bird</a>
+                    <a href="fish.html">Fish</a>
+                </div>
+            </div>
+
+            <!-- Exotic Pets -->
+            <div class="dropdown">
+                <button class="dropbtn">Exotic Pets &#x25BE;</button>
+                <div class="dropdown-content">
+                    <a href="Sugarglider.html">Sugar Glider</a>
+                    <a href="Hamster.html">Hamster</a>
+                    <a href="snake.html">Snake</a>
+                    <a href="hedgehog.html">Hedgehog</a>
+                    <a href="iguana.html">Iguana</a>
+                </div>
+            </div>
+
+            <!-- Farm Pets -->
+            <div class="dropdown">
+                <button class="dropbtn">Farm Pets &#x25BE;</button>
+                <div class="dropdown-content">
+                    <a href="cow.html">Cow</a>
+                    <a href="goat.html">Goat</a>
+                    <a href="chicken.html">Chicken</a>
+                    <a href="horse.html">Horse</a>
+                    <a href="duck.html">Duck</a>
+                </div>
+            </div>
+        </div>
+    </main>
+<script>
+ // pet.html search bar functionality
+const searchBar = document.getElementById('searchBar');
+const searchButton = document.getElementById('search');
+const resultsContainer = document.createElement('div');
+resultsContainer.id = 'search-results';
+resultsContainer.style.position = 'absolute';
+resultsContainer.style.backgroundColor = 'white';
+resultsContainer.style.width = '500px';
+resultsContainer.style.zIndex = '1000';
+resultsContainer.style.top = (searchBar.offsetTop + searchBar.offsetHeight) + 'px';
+document.querySelector('.search-container').appendChild(resultsContainer);
+resultsContainer.style.boxShadow = '0 8px 15px rgba(0, 0, 0, 0.2)'; // Deeper shadow for more 3D effect
+resultsContainer.style.color = 'black'; // White text for visibility
+resultsContainer.style.fontWeight = 'bold';
+
+
+// Combined disease data for dogs, cats, and rabbits
+const diseaseData = {
+    "dog": {
+    "Canine Parvovirus": {symptoms: ["Vomiting", "Diarrhea", "Lethargy", "Loss of appetite", "Fever", "Abdominal pain"]},
+    "Feline Panleukopenia": {symptoms: ["Dehydration", "Fever", "Lethargy"]},
+    "Rabies": {symptoms: ["Aggression", "Paralysis", "Fear of water"]},
+    "Distemper": {symptoms: ["Coughing", "Sneezing", "Lethargy"]},
+    "Lyme Disease": {symptoms: ["Joint pain", "Fever", "Lethargy"]},
+    "Heartworm Disease": {symptoms: ["Coughing", "Fatigue", "Swollen abdomen"]}
+    },
+
+    "cat": {
+    "Feline Leukemia Virus (FeLV)": {symptoms: ["Weight loss", "Pale gums", "Poor coat condition", "Lethargy", "Diarrhea"]},
+    "Feline Immunodeficiency Virus (FIV)": {symptoms: ["Swollen lymph nodes", "Fever", "Chronic infections", "Weight loss"]},
+    "Feline Infectious Peritonitis (FIP)": {symptoms: ["Fever", "Weight loss", "Lethargy", "Difficulty breathing"]},
+    "Feline Upper Respiratory Infection": {symptoms: ["Sneezing", "Runny nose", "Watery eyes", "Coughing", "Lethargy"]},
+    "Feline Asthma": {symptoms: ["Coughing (especially after exercise or excitement)", "Wheezing", "Rapid or labored breathing", "Open mouth breathing", "Lethargy", "Loss of appetite"]}
+    },
+    "rabbit": {
+    "Coccidiosis": { symptoms: ["Diarrhea", "Weight loss", "Lethargy", "Bloated stomach"] },
+    "Encephalitozoonosis": { symptoms: ["Head tilt", "Loss of balance", "Cataracts", "Weakness"] },
+    "Bacterial Enteritis": { symptoms: ["Severe diarrhea", "Loss of appetite", "Abdominal pain"] },
+    "Skin Parasites": { symptoms: ["Itchy skin", "Hair loss", "Red, irritated skin"] },
+    "Urinary Tract Infection": { symptoms: ["Frequent urination", "Blood in urine", "Pain while urinating"] }
+    },
+    "bird": {
+    "Avian Influenza": {symptoms: ["Sneezing", "Swelling around the eyes", "Loss of appetite", "Sudden death"]},
+    "Psittacosis": {symptoms: ["Watery green droppings", "Ruffled feathers", "Difficulty breathing", "Weight loss"]},
+    "Newcastle Disease": {symptoms: ["Nasal discharge", "Twisting of the neck", "Paralysis", "Drop in egg production"]},
+    "Aspergillosis": {symptoms: ["Labored breathing", "Weight loss", "Voice changes", "Weakness"]},
+    "Candidiasis": {symptoms: ["White plaques in the mouth", "Poor digestion", "Vomiting", "Lethargy"]}
+    },
+    "fish": {
+    "Ichthyophthirius": {symptoms: ["White spots on skin and gills", "Scratching against objects", "Labored breathing", "Lethargy"]},
+    "Fin Rot": {symptoms: ["Frayed or discolored fins", "Fins appearing torn or rotting", "Lethargy", "Loss of appetite"]},
+    "Swim Bladder Disease": {symptoms: ["Difficulty swimming", "Floating upside down or sinking", "Loss of appetite", "Distended belly"]},
+    "Columnaris (Cotton Wool Disease)": {symptoms: ["White cotton-like patches on skin and mouth", "Frayed fins", "Ulcers or sores", "Lethargy"]},
+    "Dropsy": {symptoms: ["Swollen abdomen", "Pinecone-like scales", "Loss of appetite", "Lethargy"]}
+    },
+    "sugarglider": {
+        "Metabolic Bone Disease (MBD)": {symptoms: ["Weakness", "Tremors", "Lameness", "Fractures", "Loss of appetite"]},
+        "Sugar Glider Malnutrition": {symptoms: ["Lethargy", "Weight loss", "Weakness", "Dull fur", "Dehydration"]},
+        "Tyzzer’s Disease": {symptoms: ["Diarrhea", "Lethargy", "Loss of appetite", "Dehydration"]},
+        "Parasites (Mites & Worms)": {symptoms: ["Itching", "Hair loss", "Scratching", "Weight loss", "Skin irritation"]},
+        "Respiratory Infections": {symptoms: ["Sneezing", "Nasal discharge", "Labored breathing", "Lethargy"]}
+    },
+    "hamster": {
+        "Wet Tail (Proliferative Ileitis)": {symptoms: ["Severe diarrhea", "Lethargy", "Loss of appetite", "Dehydration", "Hunched posture"]},
+        "Respiratory Infection": {symptoms: ["Sneezing", "Runny nose", "Labored breathing", "Lethargy", "Watery eyes"]},
+        "Skin Mites": {symptoms: ["Excessive scratching", "Patchy hair loss", "Red, irritated skin", "Scabbing"]},
+        "Diabetes": {symptoms: ["Excessive thirst", "Frequent urination", "Weight loss", "Lethargy"]},
+        "Abscesses": {symptoms: ["Swollen lumps on the skin", "Pus discharge", "Pain or discomfort", "Redness around the lump"]}
+    },
+    "snake": {
+        "Infectious Stomatitis (Mouth Rot)": {symptoms: ["Swelling in the mouth", "Redness", "Pus discharge", "Loss of appetite"]},
+        "Respiratory Infections": {symptoms: ["Wheezing", "Nasal discharge", "Open-mouth breathing", "Lethargy"]},
+        "Parasitic Infections": {symptoms: ["Weight loss", "Regurgitation", "Skin irritation", "Presence of mites or ticks"]},
+        "Inclusion Body Disease (IBD)": {symptoms: ["Regurgitation", "Stargazing (abnormal posture)", "Paralysis", "Weight loss"]},
+        "Dermatitis (Scale Rot)": {symptoms: ["Discolored scales", "Blisters", "Ulcerations", "Foul odor"]}
+    },
+    "hedgehog": {
+        "Wobbly Hedgehog Syndrome (WHS)": {symptoms: ["Loss of coordination", "Weakness", "Paralysis", "Tremors", "Weight loss"]},
+        "Respiratory Infections": {symptoms: ["Sneezing", "Nasal discharge", "Labored breathing", "Lethargy"]},
+        "Mites and Skin Infections": {symptoms: ["Excessive scratching", "Flaky skin", "Quill loss", "Red or inflamed skin", "Scabs"]},
+        "Obesity": {symptoms: ["Difficulty walking", "Fat rolls over legs", "Lethargy", "Shortness of breath"]},
+        "Dental Disease": {symptoms: ["Drooling", "Bad breath", "Weight loss", "Difficulty eating", "Swollen gums"]}
+    },
+    "iguana": {
+        "Metabolic Bone Disease (MBD)": {symptoms: ["Weak limbs", "Soft or deformed bones", "Lethargy", "Tremors", "Swollen jaw"]},
+        "Respiratory Infections": {symptoms: ["Open-mouth breathing", "Wheezing", "Nasal discharge", "Lethargy"]},
+        "Mouth Rot (Stomatitis)": {symptoms: ["Swollen gums", "Pus or discharge from the mouth", "Loss of appetite", "Drooling"]},
+        "Parasites": {symptoms: ["Weight loss", "Diarrhea", "Lethargy", "Visible worms in feces", "Dehydration"]},
+        "Bladder Stones": {symptoms: ["Straining to urinate", "Lethargy", "Loss of appetite", "Swollen abdomen", "Blood in urine"]}
+    },
+    "cow": {
+        "Mastitis": {symptoms: ["Swollen and painful udder", "Clotted or discolored milk", "Reduced milk production", "Fever and lethargy", "Loss of appetite"]},
+        "Foot and Mouth Disease (FMD)": {symptoms: ["High fever", "Blisters on mouth, tongue, and hooves", "Excessive drooling", "Lameness and difficulty walking", "Loss of appetite and weight loss"]},
+        "Bovine Respiratory Disease (BRD)": {symptoms: ["Coughing and nasal discharge", "Fever and rapid breathing", "Lethargy and reduced appetite", "Droopy ears and depression", "Labored breathing"]},
+        "Bovine Tuberculosis (TB)": {symptoms: ["Chronic cough", "Gradual weight loss", "Reduced milk production", "Enlarged lymph nodes", "Weakness and lethargy"]},
+        "Bloat (Ruminal Tympany)": {symptoms: ["Swollen left side of the abdomen", "Restlessness and discomfort", "Frequent lying down and getting up", "Difficulty breathing", "Excessive salivation"]}
+    },
+    "goat": {
+        "Enterotoxemia": {symptoms: ["Sudden death in young goats", "Abdominal pain and bloating", "Diarrhea (sometimes bloody)", "Teeth grinding due to pain", "Loss of appetite and lethargy"]},
+        "Caseous Lymphadenitis (CL)": {symptoms: ["Swollen lymph nodes with abscesses", "Weight loss despite normal appetite", "Chronic coughing if internal organs are affected", "Weakness and reduced milk production", "Abscess rupture with thick, pus-like discharge"]},
+        "Pneumonia": {symptoms: ["Labored breathing and coughing", "Nasal discharge and fever", "Lethargy and reduced appetite", "Crackling lung sounds on auscultation", "Dehydration and weakness"]},
+        "Johne’s Disease": {symptoms: ["Chronic diarrhea", "Progressive weight loss despite normal eating", "Rough, dull hair coat", "Weakness and reduced milk production", "No effective early-stage symptoms"]},
+        "Ketosis (Pregnancy Toxemia)": {symptoms: ["Loss of appetite and weakness", "Sweet or acetone-like breath odor", "Depression and lethargy", "Tremors or unsteady walking", "Lying down frequently and difficulty standing"]}
+    },
+    "chicken": {
+        "Newcastle Disease": {symptoms: ["Sneezing and coughing", "Nasal discharge", "Greenish diarrhea", "Twisted neck and paralysis", "Drop in egg production"]},
+        "Avian Influenza (Bird Flu)": {symptoms: ["Swelling of the head, neck, and eyes", "Respiratory distress", "Sudden drop in egg production", "Watery diarrhea", "Purple discoloration of comb and wattles"]},
+        "Infectious Bronchitis": {symptoms: ["Coughing and sneezing", "Watery eyes and nasal discharge", "Soft-shelled or misshapen eggs", "Reduced egg production", "Depression and lethargy"]},
+        "Marek’s Disease": {symptoms: ["Paralysis of legs, wings, or neck", "Weight loss", "Grey iris or irregular pupil shape", "Tumors in organs", "Ruffled feathers and weakness"]},
+        "Fowl Pox": {symptoms: ["Scab-like lesions on comb, wattles, and beak", "Weight loss and reduced appetite", "Nodules in the mouth and throat (wet form)", "Drop in egg production", "Labored breathing"]}
+    },
+    "horse": {
+        "Equine Influenza": {symptoms: ["High fever", "Coughing and nasal discharge", "Lethargy and reduced appetite", "Swollen lymph nodes", "Labored breathing"]},
+        "Tetanus": {symptoms: ["Muscle stiffness and spasms", "Lockjaw (difficulty opening mouth)", "Erect ears and stiff tail", "Sweating and difficulty swallowing", "Paralysis in severe cases"]},
+        "Equine Colic": {symptoms: ["Frequent rolling and pawing at the ground", "Kicking or biting at the abdomen", "Excessive sweating and restlessness", "Loss of appetite", "Increased heart rate and difficulty passing manure"]},
+        "Equine Infectious Anemia (EIA)": {symptoms: ["Recurring fever", "Lethargy and weight loss", "Swelling of legs and lower abdomen", "Pale mucous membranes", "Increased heart and respiratory rate"]},
+        "Laminitis": {symptoms: ["Severe hoof pain and lameness", "Reluctance to walk or move", "Heat in the hooves", "Increased digital pulse", "Shifting weight between legs"]}
+    },
+    "duck": {
+        "Duck Plague (Duck Viral Enteritis)": {symptoms: ["Sudden death", "Loss of appetite", "Watery diarrhea", "Nasal discharge", "Swelling of eyelids", "Drooping wings"]},
+        "Aspergillosis": {symptoms: ["Difficulty breathing", "Weight loss", "Lethargy", "Reduced egg production", "Nasal discharge"]},
+        "Botulism": {symptoms: ["Weakness and paralysis", "Drooping neck", "Difficulty breathing", "Inability to move", "Sudden death"]},
+        "Coccidiosis": {symptoms: ["Bloody diarrhea", "Weight loss", "Lethargy", "Pale comb and wattles", "Ruffled feathers"]},
+        "Newcastle Disease": {symptoms: ["Respiratory distress (gasping, coughing)", "Twisting of the neck", "Lethargy", "Drop in egg production", "Swelling around the eyes and neck"]}
+    }
+};
+
+// Search function
+searchBar.addEventListener('input', function() {
+    const query = searchBar.value.toLowerCase();
+    resultsContainer.innerHTML = '';
+
+    if (query) {
+        const matchedDiseases = findDiseases(query);
+
+        if (matchedDiseases.length > 0) {
+            matchedDiseases.forEach(disease => {
+                const listItem = document.createElement('div');
+                listItem.textContent = disease;
+                listItem.className = 'search-result-item';
+                listItem.style.padding = '10px';
+                listItem.style.cursor = 'pointer';
+                listItem.style.borderBottom = '1px solid #ddd';
+                listItem.style.transition = 'background-color 0.2s ease-in-out';
+                listItem.onmouseover = () => listItem.style.backgroundColor = '#f1f1f1';
+                listItem.onmouseout = () => listItem.style.backgroundColor = 'transparent';
+                listItem.onclick = () => {
+                    searchBar.value = disease;
+                    const petType = query.split(' ')[2];
+                    window.location.href = `${petType}.html#${disease.replace(/\s+/g, '')}`;
+                };
+                resultsContainer.appendChild(listItem);
+            });
+        } 
+    }
+});
+
+// Search button click event
+searchButton.addEventListener('click', function() {
+    const query = searchBar.value.toLowerCase();
+    const matchedDiseases = findDiseases(query);
+
+    if (matchedDiseases.length > 0) {
+        const petType = query.split(' ')[2];
+        window.location.href = `${petType}.html#${matchedDiseases[0].replace(/\s+/g, '')}`;
+    } else {
+        displayNoResult();
+    }
+});
+
+// Helper function to find diseases
+function findDiseases(query) {
+    const match = query.match(/(\w+) in (\w+)/);
+    if (match) {
+        const symptom = match[1];
+        const petType = match[2];
+
+        if (diseaseData[petType]) {
+            return Object.keys(diseaseData[petType]).filter(disease =>
+                diseaseData[petType][disease].symptoms.some(sym => sym.toLowerCase().includes(symptom))
+            );
+        }
+    }
+    return [];
+}
+
+// Function to display 'Search not found'
+function displayNoResult() {
+    resultsContainer.innerHTML = '';
+    const noResult = document.createElement('div');
+    noResult.textContent = 'Search not found';
+    noResult.style.padding = '10px';
+    noResult.style.color = 'gray';
+    noResult.style.textAlign = 'center';
+    resultsContainer.appendChild(noResult);
+}
+
+</script>
+</html>

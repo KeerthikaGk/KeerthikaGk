@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">   
+<head>
+<style>
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+.header {
+    display: flex;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logos {
+    width: 80px;
+    height: 50px;
+    margin-top: 7%;
+}
+
+#heading {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-top: 10%;
+    margin-left: 10px;
+}
+
+/* Background Image Styling */
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.left {
+    width: 40%;
+    height: 100%;
+    background-image: url('dog.jpg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+}
+.content {
+    position: relative;
+    padding-bottom: 10%;
+    width: 60%;
+    height: 100%;
+    background-color: #fff; /* White background for content */
+}
+
+.heading {
+    font-size: 28px;
+    font-weight: bold;
+    color: #0a0101;
+    padding-top: 7%;
+}
+
+/* Disease List Styling */
+.disease-list {
+    margin: 3%;
+    max-width: 600px;
+    text-align: left;
+}
+
+.disease-item {
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+}
+
+.disease-item:hover {
+    background-color: #f0f0f0;
+}
+
+.disease-name {
+    position: absolute;
+    font-size: 18px;
+    color: #555;
+}
+
+/* Buttons Styling */
+.button {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.symptoms-btn {
+    margin-left: 68%;
+    height: auto;
+    background-color: #28a745;
+    color: #fcfcfc;
+}
+
+.symptoms-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Overlay for Symptoms */
+#symptomOverlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 10;
+    overflow: auto;
+    padding-top: 54px;
+    box-sizing: border-box;
+}
+
+/* Updated styles for all headings in the overlay */
+#symptomOverlay h3 {
+
+    margin: 0; /* Remove margin at top and bottom */
+    padding: 0; /* Remove any padding */
+    font-size: 20px; /* Set font size */
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #c1073b; /* Background color for heading */
+    margin-bottom: 10px; /* Add bottom margin to separate sections */
+}
+
+/* Additional padding and reset for unordered lists */
+#symptomOverlay ul {
+    padding-left: 20px; /* Indentation for list */
+    margin: 15px; /* Remove default margin */
+}
+
+/* Styling for list items inside overlay */
+#symptomOverlay ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd; /* Optional: Add separator */
+}
+
+#symptomOverlay ul li:last-child {
+    border-bottom: none; /* Remove separator for the last item */
+}
+
+.back-button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #FF5733;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background-color: #C70039;
+}
+</style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="logo-container">
+            <div class="logos">
+                <img src="logo4.png" alt="Pet Health Advisor Logo" width="100px" height="60px">
+            </div>
+            <div class="head">
+                <h1 id="heading">PET HEALTH ADVISOR</h1> 
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="left"></div>
+        <div class="content">
+            <h1 class="heading">Diseases</h1>
+            <div class="disease-list">
+                <div class="disease-item">
+                    <span class="disease-name">Canine Parvovirus</span>
+                    <button class="button symptoms-btn" onclick="showSymptoms('Canine Parvovirus')">Symptoms & Treatments </button>
+                </div>
+                <div class="disease-item">
+                    <span class="disease-name">Feline Panleukopenia</span>
+                    <button class="button symptoms-btn" onclick="showSymptoms('Feline Panleukopenia')">Symptoms & Treatments</button>
+                </div>
+                <div class="disease-item">
+                    <span class="disease-name">Rabies</span>
+                    <button class="button symptoms-btn" onclick="showSymptoms('Rabies')">Symptoms & Treatments</button>
+                </div>
+                <div class="disease-item">
+                    <span class="disease-name">Distemper</span>
+                    <button class="button symptoms-btn" onclick="showSymptoms('Distemper')">Symptoms & Treatments</button>
+                </div>
+                <div class="disease-item">
+                    <span class="disease-name">Lyme Disease</span>
+                    <button class="button symptoms-btn" onclick="showSymptoms('Lyme Disease')">Symptoms & Treatments</button>
+                </div>
+                <div class="disease-item">
+                    <span class="disease-name">Heartworm Disease</span>
+                    <button class="button symptoms-btn" onclick="showSymptoms('Heartworm Disease')">Symptoms & Treatments</button>
+                </div>
+            </div>
+
+            <div id="symptomOverlay">
+                <h1 id="overlayHeading"></h1>
+                <ul id="overlayContent"></ul>
+                <button class="back-button" onclick="closeOverlay()">Go Back</button>
+            </div>
+        </div>
+    </div>
+
+<script>
+  const diseaseData = {
+    "Canine Parvovirus": {
+        symptoms: ["Vomiting", "Diarrhea", "Lethargy", "Loss of appetite", "Fever", "Abdominal pain"],
+        treatments: [
+            "Hospitalization for intravenous (IV) fluids to prevent dehydration",
+            "Antiemetic drugs to control vomiting",
+            "Antibiotics to prevent secondary bacterial infections", 
+            "Nutritional support,often through a feeding tube if necessary",
+            "Medications to reduce fever and abdominal pain",
+            "Close monitoring by a veterinarian"
+        ]
+    },
+    "Feline Panleukopenia": {
+        symptoms: ["Dehydration", "Fever", "Lethargy"],
+        treatments: [
+            "Fluid therapy for rehydration",
+            "Broad-spectrum antibiotics to prevent secondary infections",
+            "Nutritional support"
+        ]
+    },
+    "Rabies": {
+        symptoms: ["Aggression", "Paralysis", "Fear of water"],
+        treatments: [
+            "No cure once symptoms appear; supportive care",
+            "Immediate post-exposure prophylaxis (vaccination)"
+        ]
+    },
+    "Distemper": {
+        symptoms: ["Coughing", "Sneezing", "Lethargy"],
+        treatments: [
+            "Antibiotics for secondary bacterial infections",
+            "Vitamin supplements for immune support",
+            "Fluids to prevent dehydration"
+        ]
+    },
+    "Lyme Disease": {
+    symptoms: [
+        "Joint pain", "Fever", "Lethargy"],
+    treatments: [
+        "Antibiotics (e.g., Doxycycline or Amoxicillin)",
+        "Anti-inflammatory medications for pain relief",
+        "Corticosteroids for severe inflammation",
+        "Pain relief medications (e.g., NSAIDs like Rimadyl)"
+       ]
+},
+
+    "Heartworm Disease": {
+        symptoms: ["Coughing", "Fatigue", "Swollen abdomen"],
+        treatments: [
+            "Heartworm preventatives (prescribed by a vet)",
+            "Medications to kill adult worms",
+            "Surgical intervention in severe cases"
+        ]
+    }
+};
+
+function showSymptoms(disease) {
+    const overlay = document.getElementById("symptomOverlay");
+    const heading = document.getElementById("overlayHeading");
+    const content = document.getElementById("overlayContent");
+
+    // Set heading to the disease name
+    heading.textContent = disease;
+
+    // Clear previous content
+    content.innerHTML = "";
+
+    // Add symptoms heading and list
+    const symptomsHeading = document.createElement("h3");
+    symptomsHeading.textContent = "Symptoms";
+    content.appendChild(symptomsHeading);
+
+    const symptomsList = document.createElement("ul");
+    diseaseData[disease].symptoms.forEach(symptom => {
+        const li = document.createElement("li");
+        li.textContent = symptom;
+        symptomsList.appendChild(li);
+    });
+    content.appendChild(symptomsList);
+
+    // Add medication heading and list
+    const treatmentsHeading = document.createElement("h3");
+    treatmentsHeading.textContent = "Treatments";
+    content.appendChild(treatmentsHeading);
+
+    const treatmentsList = document.createElement("ul");
+    diseaseData[disease].treatments.forEach(med => {
+        const li = document.createElement("li");
+        li.textContent = med;
+        treatmentsList.appendChild(li);
+    });
+    content.appendChild(treatmentsList);
+
+    // Show the overlay
+    overlay.style.display = "block";
+}
+
+function closeOverlay() {
+    const overlay = document.getElementById("symptomOverlay");
+    overlay.style.display = "none";
+}
+</script>
+</body>
+</html>

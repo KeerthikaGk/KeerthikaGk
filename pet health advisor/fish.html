@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">   
+<head>
+<style>
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+.header {
+    display: flex;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logos {
+    width: 80px;
+    height: 50px;
+    margin-top: 7%;
+}
+
+#heading {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-top: 10%;
+    margin-left: 10px;
+}
+
+/* Background Image Styling */
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.left {
+    width: 40%;
+    height: 100%;
+    background-image: url('fish.webp'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+}
+.content {
+    position: relative;
+    padding-bottom: 10%;
+    width: 60%;
+    height: 100%;
+    background-color: #fff; /* White background for content */
+}
+
+.heading {
+    font-size: 28px;
+    font-weight: bold;
+    color: #0a0101;
+    padding-top: 7%;
+}
+
+/* Disease List Styling */
+.disease-list {
+    margin: 3%;
+    max-width: 600px;
+    text-align: left;
+}
+
+.disease-item {
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+}
+
+.disease-item:hover {
+    background-color: #f0f0f0;
+}
+
+.disease-name {
+    position: absolute;
+    font-size: 18px;
+    color: #555;
+}
+
+/* Buttons Styling */
+.button {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.symptoms-btn {
+    margin-left: 68%;
+    height: auto;
+    background-color: #28a745;
+    color: #fcfcfc;
+}
+
+.symptoms-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Overlay for Symptoms */
+#symptomOverlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 10;
+    overflow: auto;
+    padding-top: 54px;
+    box-sizing: border-box;
+}
+
+/* Updated styles for all headings in the overlay */
+#symptomOverlay h3 {
+
+    margin: 0; /* Remove margin at top and bottom */
+    padding: 0; /* Remove any padding */
+    font-size: 20px; /* Set font size */
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #c1073b; /* Background color for heading */
+    margin-bottom: 10px; /* Add bottom margin to separate sections */
+}
+
+/* Additional padding and reset for unordered lists */
+#symptomOverlay ul {
+    padding-left: 20px; /* Indentation for list */
+    margin: 15px; /* Remove default margin */
+}
+
+/* Styling for list items inside overlay */
+#symptomOverlay ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd; /* Optional: Add separator */
+}
+
+#symptomOverlay ul li:last-child {
+    border-bottom: none; /* Remove separator for the last item */
+}
+
+.back-button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #FF5733;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background-color: #C70039;
+}
+</style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="logo-container">
+            <div class="logos">
+                <img src="logo4.png" alt="Pet Health Advisor Logo" width="100px" height="60px">
+            </div>
+            <div class="head">
+                <h1 id="heading">PET HEALTH ADVISOR</h1>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="left"></div>
+        <div class="content">
+            <h1 class="heading">Diseases</h1>
+            <div class="disease-list">
+                <div class="disease-item">
+                    <span class="disease-name">Ichthyophthirius</span>
+                    <button class="button symptoms-btn" onclick="showSymptoms('Ichthyophthirius')">Symptoms & Treatments</button>
+                </div>
+                <div class="disease-item">
+                    <span class="disease-name">Fin Rot</span>
+                    <button class="button symptoms-btn" onclick="showSymptoms('Fin Rot')">Symptoms & Treatments</button>
+                </div>
+                <div class="disease-item">
+                    <span class="disease-name">Swim Bladder Disease</span>
+                    <button class="button symptoms-btn" onclick="showSymptoms('Swim Bladder Disease')">Symptoms & Treatments</button>
+                </div>
+                <div class="disease-item">
+                    <span class="disease-name">Columnaris (Cotton Wool Disease)</span>
+                    <button class="button symptoms-btn" onclick="showSymptoms('Columnaris (Cotton Wool Disease)')">Symptoms & Treatments</button>
+                </div>
+                <div class="disease-item">
+                    <span class="disease-name">Dropsy</span>
+                    <button class="button symptoms-btn" onclick="showSymptoms('Dropsy')">Symptoms & Treatments</button>
+                </div>
+            </div>
+
+            <div id="symptomOverlay">
+                <h1 id="overlayHeading"></h1>
+                <ul id="overlayContent"></ul>
+                <button class="back-button" onclick="closeOverlay()">Go Back</button>
+            </div>
+        </div>
+    </div>
+
+<script>
+  const diseaseData = {
+    "Ichthyophthirius": {
+        symptoms: ["White spots on skin and gills", "Scratching against objects", "Labored breathing", "Lethargy"],
+        treatments: [
+            "Raising water temperature gradually to 86°F (30°C) to speed up parasite lifecycle.",
+            "Adding aquarium salt to help fish recover and reduce stress.",
+            "Using treatmentss like Malachite Green or Formalin to kill parasites.",
+            "Improving water quality through regular filtration and water changes.",
+            "Quarantining infected fish to prevent the spread of the disease."
+        ]
+    },
+    "Fin Rot": {
+        symptoms: ["Frayed or discolored fins", "Fins appearing torn or rotting", "Lethargy", "Loss of appetite"],
+        treatments: [
+            "Antibacterial treatments like Erythromycin or Tetracycline.",
+            "Maintaining clean water by frequent water changes.",
+            "Removing aggressive tank mates that may cause fin damage.",
+            "Providing a balanced diet to boost immunity.",
+            "Using stress-reducing water conditioners to promote healing."
+        ]
+    },
+    "Swim Bladder Disease": {
+        symptoms: ["Difficulty swimming", "Floating upside down or sinking", "Loss of appetite", "Distended belly"],
+        treatments: [
+            "Fasting the fish for 24-48 hours to relieve digestive issues.",
+            "Feeding peas (with skin removed) to aid digestion.",
+            "Keeping water temperature stable to reduce stress.",
+            "Using Epsom salt baths to help reduce bloating.",
+            "Avoiding overfeeding and providing a fiber-rich diet."
+        ]
+    },
+    "Columnaris (Cotton Wool Disease)": {
+        symptoms: ["White cotton-like patches on skin and mouth", "Frayed fins", "Ulcers or sores", "Lethargy"],
+        treatments: [
+            "Using antibiotics like Kanamycin or Furan-2.",
+            "Adding aquarium salt to reduce bacterial load.",
+            "Maintaining proper water quality with frequent changes.",
+            "Reducing overcrowding to lower stress and infection risks.",
+            "Providing a protein-rich diet to strengthen immunity."
+        ]
+    },
+    "Dropsy": {
+        symptoms: ["Swollen abdomen", "Pinecone-like scales", "Loss of appetite", "Lethargy"],
+        treatments: [
+            "Epsom salt baths to reduce swelling and improve osmoregulation.",
+            "Antibacterial treatmentss like Kanamycin or Maracyn-Two.",
+            "Feeding high-quality, easily digestible food to boost recovery.",
+            "Keeping water conditions optimal with regular cleaning.",
+            "Isolating affected fish to prevent the spread of disease."
+        ]
+    }
+};
+
+    
+function showSymptoms(disease) {
+    const overlay = document.getElementById("symptomOverlay");
+    const heading = document.getElementById("overlayHeading");
+    const content = document.getElementById("overlayContent");
+
+    // Set heading to the disease name
+    heading.textContent = disease;
+
+    // Clear previous content
+    content.innerHTML = "";
+
+    // Add symptoms heading and list
+    const symptomsHeading = document.createElement("h3");
+    symptomsHeading.textContent = "Symptoms";
+    content.appendChild(symptomsHeading);
+
+    const symptomsList = document.createElement("ul");
+    diseaseData[disease].symptoms.forEach(symptom => {
+        const li = document.createElement("li");
+        li.textContent = symptom;
+        symptomsList.appendChild(li);
+    });
+    content.appendChild(symptomsList);
+
+    // Add treatments heading and list
+    const treatmentsHeading = document.createElement("h3");
+    treatmentsHeading.textContent = "Treatments";
+    content.appendChild(treatmentsHeading);
+
+    const treatmentsList = document.createElement("ul");
+    diseaseData[disease].treatments.forEach(med => {
+        const li = document.createElement("li");
+        li.textContent = med;
+        treatmentsList.appendChild(li);
+    });
+    content.appendChild(treatmentsList);
+
+    // Show the overlay
+    overlay.style.display = "block";
+}
+
+function closeOverlay() {
+    const overlay = document.getElementById("symptomOverlay");
+    overlay.style.display = "none";
+}
+</script>
+</body>
+</html>
